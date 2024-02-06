@@ -1,11 +1,13 @@
 package com.tahir.explorejobs.job;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/jobs")
 public class JobController {
     JobService jobService;
 
@@ -13,18 +15,36 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    @GetMapping("/jobs")
-    public List<Job> findAll() {
-        return jobService.findAll();
+    @GetMapping
+    public ResponseEntity<List<Job>> findAll() {
+        return ResponseEntity.ok(jobService.findAll());
     }
-    @PostMapping("/jobs")
-    public String createJob(@RequestBody Job job) {
+    @PostMapping
+    public ResponseEntity<String> createJob(@RequestBody Job job) {
         jobService.createJob(job);
-        return "job added successfully";
+        return new ResponseEntity<>("job added successfully", HttpStatus.CREATED);
     }
-    @GetMapping("/jobs/{id}")
-    public Job getJobById(@PathVariable int id) {
-        return jobService.getJobById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Job> getJobById(@PathVariable int id) {
+        return new ResponseEntity<>(jobService.getJobById(id), HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteById(@PathVariable int id) {
+        boolean deleted = jobService.deleteById(id);
+        if(deleted) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<HttpStatus> updateJob(@RequestBody Job job, @PathVariable int id) {
+        boolean updated = jobService.updateJob(job, id);
+        if(updated) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
 
