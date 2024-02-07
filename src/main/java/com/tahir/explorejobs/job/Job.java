@@ -1,20 +1,29 @@
 package com.tahir.explorejobs.job;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private String discription;
+    private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
 
-    public Job(int id, String title, String discription, String minSalary, String maxSalary, String location) {
+    public Job(int id, String title, String description, String minSalary, String maxSalary, String location) {
         this.id = id;
         this.title = title;
-        this.discription = discription;
+        this.description = description;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
         this.location = location;
+    }
+
+    public Job() {
+
     }
 
     public int getId() {
@@ -33,12 +42,12 @@ public class Job {
         this.title = title;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String discription) {
+        this.description = discription;
     }
 
     public String getMinSalary() {

@@ -21,8 +21,13 @@ public class JobController {
     }
     @PostMapping
     public ResponseEntity<String> createJob(@RequestBody Job job) {
-        jobService.createJob(job);
-        return new ResponseEntity<>("job added successfully", HttpStatus.CREATED);
+        boolean created = jobService.createJob(job);
+        if(created) {
+            return new ResponseEntity<>("job added successfully", HttpStatus.CREATED);
+        }
+        else {
+            return new ResponseEntity<>("something went wrong", HttpStatus.NO_CONTENT);
+        }
     }
     @GetMapping("/{id}")
     public ResponseEntity<Job> getJobById(@PathVariable int id) {
@@ -43,7 +48,6 @@ public class JobController {
         if(updated) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
-
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
