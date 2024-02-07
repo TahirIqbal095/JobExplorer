@@ -11,7 +11,11 @@ import java.util.Optional;
 @Service
 public class JobServiceImpl implements JobService {
 
-    private JobRepository jobRepository;
+    private final JobRepository jobRepository;
+
+    public JobServiceImpl(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
 
     @Override
     public List<Job> findAll() {
@@ -56,6 +60,7 @@ public class JobServiceImpl implements JobService {
             existingJob.setMinSalary(job.getMinSalary());
             existingJob.setMaxSalary(job.getMaxSalary());
             existingJob.setLocation(job.getLocation());
+            jobRepository.save(existingJob);
             return true;
         }
         return false;
