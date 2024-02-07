@@ -58,6 +58,8 @@ public class JobController {
 
 /*
 
+------ job end points ----
+
 get /jobs: get all jobs
 get /jobs/{id}: get a specific job by id
 
@@ -68,5 +70,13 @@ delete /jobs/{id}: delete a specific job by id
 put /jobs/{id}: update a specific job with id (request body should contain the updated job details)
 
 get /jobs/{id}/company : get the company associated with specific job by id
+
+------ company end points ------
+
+get /companies
+put / companies/{id}
+post /company
+get /company
+delete /company/{id}
 
  */
