@@ -43,4 +43,22 @@ public class ReviewServiceImpl implements ReviewService {
                 .findFirst()
                 .orElse(null);
     }
+
+    @Override
+    public boolean updateReview(int companyId, int reviewId, Review review) {
+        List<Review> reviews = repository.findByCompanyId(companyId);
+        Review updatedReview = reviews.stream()
+                .filter(rev -> rev.getId() == reviewId)
+                .findFirst()
+                .orElse(null);
+
+        if(updatedReview != null) {
+            updatedReview.setDescription(review.getDescription());
+            updatedReview.setRating(review.getRating());
+            updatedReview.setTittle(review.getTittle());
+            repository.save(updatedReview);
+            return true;
+        }
+        return false;
+    }
 }

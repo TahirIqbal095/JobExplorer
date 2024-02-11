@@ -9,4 +9,6 @@ public interface ReviewService {
     boolean addReviews(Review review, int companyId);
 
     Review getReview(int companyId, int reviewId);
+
+    boolean updateReview(int companyId, int reviewId, Review review);
 }
