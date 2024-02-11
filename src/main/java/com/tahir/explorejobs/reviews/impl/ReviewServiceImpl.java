@@ -29,8 +29,18 @@ public class ReviewServiceImpl implements ReviewService {
         Company company = companyService.getById(companyId);
         if(company != null) {
             review.setCompany(company);
+            repository.save(review);
             return true;
         } else
             return false;
+    }
+
+    @Override
+    public Review getReview(int companyId, int reviewId) {
+        List<Review> reviews = repository.findByCompanyId(companyId);
+        return reviews.stream()
+                .filter(review -> review.getId() == reviewId)
+                .findFirst()
+                .orElse(null);
     }
 }
