@@ -11,4 +11,6 @@ public interface ReviewService {
     Review getReview(int companyId, int reviewId);
 
     boolean updateReview(int companyId, int reviewId, Review review);
+
+    boolean deleteReview(int companyId, int reviewId);
 }
