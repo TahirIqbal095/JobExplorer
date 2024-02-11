@@ -1,9 +1,8 @@
 package com.tahir.explorejobs.reviews;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tahir.explorejobs.company.Company;
+import jakarta.persistence.*;
 
 @Entity
 public class Review {
@@ -14,8 +13,20 @@ public class Review {
     private String description;
     private double rating;
 
+    @JsonIgnore
+    @ManyToOne
+    private Company company;
+
     public int getId() {
         return id;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public void setId(int id) {
