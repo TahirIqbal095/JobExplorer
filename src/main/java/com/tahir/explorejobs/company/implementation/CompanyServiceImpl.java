@@ -3,6 +3,7 @@ package com.tahir.explorejobs.company.implementation;
 import com.tahir.explorejobs.company.Company;
 import com.tahir.explorejobs.company.CompanyRepository;
 import com.tahir.explorejobs.company.CompanyService;
+import com.tahir.explorejobs.job.JobRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,10 +47,10 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public boolean deleteCompany(int id) {
-        try {
+        if(repository.existsById(id)) {
             repository.deleteById(id);
             return true;
-        } catch (Exception e) {
+        } else {
             return false;
         }
     }
