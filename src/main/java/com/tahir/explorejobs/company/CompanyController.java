@@ -1,6 +1,5 @@
 package com.tahir.explorejobs.company;
 
-import com.tahir.explorejobs.job.Job;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +38,7 @@ public class CompanyController {
     public void addCompany(@RequestBody Company company) {
         companyService.addCompany(company);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCompany(@PathVariable int id) {
         boolean deleted = companyService.deleteCompany(id);

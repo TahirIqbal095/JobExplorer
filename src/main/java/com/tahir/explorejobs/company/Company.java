@@ -1,9 +1,10 @@
 package com.tahir.explorejobs.company;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tahir.explorejobs.job.Job;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Company {
@@ -14,7 +15,19 @@ public class Company {
     private String name;
     private String description;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "company") // mapped by a field called company which exists in jobs
+    private List<Job> jobs;
+
     public Company() {
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
     }
 
     public int getId() {

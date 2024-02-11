@@ -3,7 +3,6 @@ package com.tahir.explorejobs.company.implementation;
 import com.tahir.explorejobs.company.Company;
 import com.tahir.explorejobs.company.CompanyRepository;
 import com.tahir.explorejobs.company.CompanyService;
-import com.tahir.explorejobs.job.Job;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +52,5 @@ public class CompanyServiceImpl implements CompanyService {
         } catch (Exception e) {
             return false;
         }
-
     }
 }
