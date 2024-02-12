@@ -22,7 +22,10 @@ public class CompanyController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Company> getCompanyById(@PathVariable int id) {
-        return new ResponseEntity<>(companyService.getById(id), HttpStatus.OK);
+        if(companyService.getById(id) != null) {
+            return new ResponseEntity<>(companyService.getById(id), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(companyService.getById(id), HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{id}")

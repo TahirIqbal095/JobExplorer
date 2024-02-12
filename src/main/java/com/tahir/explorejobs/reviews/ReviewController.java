@@ -47,7 +47,7 @@ public class ReviewController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/reviews/{reviewId}")
+    @DeleteMapping("/reviews/{reviewId}")
     public ResponseEntity<HttpStatus> deleteReview(@PathVariable int companyId,@PathVariable int reviewId) {
         boolean isDeleted = service.deleteReview(companyId, reviewId);
         if(isDeleted) {
