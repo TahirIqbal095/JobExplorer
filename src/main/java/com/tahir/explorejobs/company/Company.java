@@ -20,6 +20,7 @@ public class Company {
     @OneToMany(mappedBy = "company") // mapped by a field called company which exists in jobs
     private List<Job> jobs;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Review> reviews;
 
