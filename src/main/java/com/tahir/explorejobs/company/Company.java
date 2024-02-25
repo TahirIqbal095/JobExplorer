@@ -21,7 +21,7 @@ public class Company {
     private List<Job> jobs;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company") // mapped by a field called company which exists in reviews
     private List<Review> reviews;
 
     public Company() {

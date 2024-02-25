@@ -1,7 +1,10 @@
 FROM openjdk:17
 
-ADD target/jobexplorer.jar jobexplorer.jar
+# Set the working directory inside the container
+WORKDIR /app
 
-ENTRYPOINT ["java", "-jar", "jobexplorer.jar"]
+ADD target/jobexplorer.jar /app/jobexplorer.jar
 
 EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "jobexplorer.jar"]

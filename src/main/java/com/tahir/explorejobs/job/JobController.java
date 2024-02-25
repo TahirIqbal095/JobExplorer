@@ -57,7 +57,6 @@ public class JobController {
 
 
 /*
-
 ------ job end points ----
 
 get /jobs: get all jobs
@@ -79,4 +78,4 @@ post /company
 get /company
 delete /company/{id}
 
- */
+*/
